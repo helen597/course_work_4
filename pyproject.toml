@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "course-work-4"
+version = "0.1.0"
+description = ""
+authors = ["helen597 <helen597597@gmail.com>"]
+license = "free"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.11.6"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
