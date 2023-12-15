@@ -1,3 +1,8 @@
+from src.vacancies_API import HeadHunterAPI, SuperJobAPI
+from src.vacancy import Vacancy
+from src.JSON_processor import JSONSaver
+
+
 # Создание экземпляра класса для работы с API сайтов с вакансиями
 hh_api = HeadHunterAPI()
 superjob_api = SuperJobAPI()
