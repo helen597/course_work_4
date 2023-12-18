@@ -34,9 +34,11 @@ def main():
     top_vacancies = get_top_vacancies(sorted_vacancies, top_n)
     print("ТОП вакансий:")
     print_vacancies(top_vacancies)
-    vacancy_to_delete = input("Введите название вакансии, которую будем удалять:")
+    vacancy_to_delete = input("Введите название вакансии, которую будем удалять: ")
     JSONSaver.delete_vacancy('filtered.json', vacancy_to_delete)
-    print("Вакансия удалена")
+    salary_from = int(input("Введите минимальную зарплату: "))
+    vacancies_by_salary = JSONSaver.get_vacancies_by_salary(salary_from)
+    print_vacancies(vacancies_by_salary)
 
 
 if __name__ == "__main__":

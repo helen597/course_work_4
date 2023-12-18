@@ -20,10 +20,12 @@ class HeadHunterAPI(VacanciesAPI):
     url = 'https://api.hh.ru/vacancies'
 
     def get_vacancies(self, name):
+        """Получает вакансии с сайта"""
         response = requests.get(self.url, params={'text': name, 'per_page': 100})
         return response.json()
 
     def save_to_json(self, filename, data):
+        """Сохраняет вакансии в файл"""
         for vacancy in data['items']:
             name = vacancy['name']
             url = vacancy['alternate_url']
@@ -40,12 +42,14 @@ class SuperJobAPI(VacanciesAPI):
     api_key = "v3.r.117049901.e9497899abcec38b14ed280a08038391982a2d1b.b20a5069ace9a4b84655ff985b7bb2a848db94f2"
 
     def get_vacancies(self, name):
+        """Получает вакансии с сайта"""
         response = requests.get(self.url, headers={"X-Api-App-Id": self.api_key},
                                 params={"keyword": name})
         # print(print(response.json()))
         return response.json()
 
     def save_to_json(self, filename, data):
+        """Сохраняет вакансии в файл"""
         for vacancy in data['objects']:
             name = vacancy['profession']
             url = vacancy['link']
