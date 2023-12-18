@@ -16,7 +16,7 @@ class Vacancy:
                 info += f"от {self.salary['from']} "
             if self.salary['to']:
                 info += f"до {self.salary['to']} "
-            if self.salary['currency'] == 'RUR':
+            if self.salary['currency'] == 'RUR' or self.salary['currency'] == 'rub':
                 info += f"рублей "
             else:
                 info += f"{self.salary['currency']} "

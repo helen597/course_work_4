@@ -21,7 +21,6 @@ class HeadHunterAPI(VacanciesAPI):
 
     def get_vacancies(self, name):
         response = requests.get(self.url, params={"text": name})
-        print(response.json())
         return response.json()
 
     def save_to_json(self, filename, data):
@@ -33,12 +32,11 @@ class HeadHunterAPI(VacanciesAPI):
             employer = vacancy['employer']['name']
             description = vacancy['snippet']['responsibility']
             new_vacancy = Vacancy(name, url, salary, requirements, employer, description)
-            json_saver = JSONSaver()
-            json_saver.add_vacancy('hh_vacancies.json', new_vacancy)
+            JSONSaver.add_vacancy('hh_vacancies.json', new_vacancy)
 
 
 class SuperJobAPI(VacanciesAPI):
-    url = "https://api.superjob.ru/"
+    url = "https://api.superjob.ru/2.0/vacancies/"
     api_key = "v3.r.117049901.e9497899abcec38b14ed280a08038391982a2d1b.b20a5069ace9a4b84655ff985b7bb2a848db94f2"
 
     def get_vacancies(self, name):
@@ -50,14 +48,13 @@ class SuperJobAPI(VacanciesAPI):
     def save_to_json(self, filename, data):
         for vacancy in data['objects']:
             name = vacancy['profession']
-            url = vacancy['external_url']
+            url = vacancy['link']
             salary = {'from': vacancy['payment_from'],
                       'to': vacancy['payment_to'],
                       'currency': vacancy['currency'],
-                      'gross': false}
+                      'gross': False}
             requirements = vacancy['candidat']
             employer = vacancy['firm_name']
             description = vacancy['work']
             new_vacancy = Vacancy(name, url, salary, requirements, employer, description)
-            json_saver = JSONSaver()
-            json_saver.add_vacancy('sj_vacancies.json', new_vacancy)
+            JSONSaver.add_vacancy('sj_vacancies.json', new_vacancy)

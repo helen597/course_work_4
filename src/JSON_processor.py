@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from src.vacancy import Vacancy
 import json, os
 
 
@@ -27,13 +26,13 @@ class JSONSaver(FileProcessor):
     def add_vacancy(filename, vacancy):
         if not os.path.exists(filename):
             with open(filename, 'w', encoding='utf-8') as f:
-                json.dump([vacancy.__dict__()], f)
+                json.dump([vacancy.__dict__()], f, ensure_ascii=False)
         else:
             with open(filename, 'r', encoding='utf-8') as f:
                 content = json.load(f)
                 content.append(vacancy.__dict__())
             with open(filename, 'w', encoding='utf-8') as f:
-                json.dump(content, f)
+                json.dump(content, f, ensure_ascii=False)
 
     @staticmethod
     def delete_vacancy(filename, vacancy):
@@ -45,3 +44,6 @@ class JSONSaver(FileProcessor):
                 del new_dict['items'][0]
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(new_dict, f)
+
+    def get_vacancies_by_salary(self):
+        pass
