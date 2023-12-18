@@ -20,7 +20,7 @@ class HeadHunterAPI(VacanciesAPI):
     url = 'https://api.hh.ru/vacancies'
 
     def get_vacancies(self, name):
-        response = requests.get(self.url, params={"text": name})
+        response = requests.get(self.url, params={'text': name, 'per_page': 100})
         return response.json()
 
     def save_to_json(self, filename, data):

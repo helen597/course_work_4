@@ -35,15 +35,16 @@ class JSONSaver(FileProcessor):
                 json.dump(content, f, ensure_ascii=False)
 
     @staticmethod
-    def delete_vacancy(filename, vacancy):
+    def delete_vacancy(filename, vacancy_name):
         with open(filename, 'r', encoding='utf-8') as f:
-            new_dict = json.load(f)
-        for item in new_dict:
-            if item['name'] == vacancy.name:
-
-                del new_dict['items'][0]
+            content = json.load(f)
+        for i in range(len(content)):
+            print(content[i])
+            if content[i]['name'] == vacancy_name:
+                del content[i]
+                break
         with open(filename, 'w', encoding='utf-8') as f:
-            json.dump(new_dict, f)
+            json.dump(content, f, ensure_ascii=False)
 
     def get_vacancies_by_salary(self):
         pass

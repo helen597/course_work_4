@@ -23,8 +23,8 @@ class Vacancy:
             if self.salary['gross']:
                 info += f'до вычета налогов'
             info += '\n'
-        else:
-            info += 'Зарплата: договорная\n'
+        # else:
+        #     info += 'Зарплата: договорная\n'
         requirements = "Требования: " + self.requirements.replace(". ", ".\n")
         info += f'{requirements}\n'
         if self.description:

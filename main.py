@@ -1,6 +1,6 @@
 from src.vacancies_API import HeadHunterAPI, SuperJobAPI
 from src.functions import filter_vacancies, sort_vacancies, get_top_vacancies, print_vacancies
-
+from src.JSON_processor import JSONSaver
 
 HH_VACANCIES_FILE = "hh_vacancies.json"
 SUPERJOB_VACANCIES_FILE = "sj_vacancies.json"
@@ -32,7 +32,11 @@ def main():
 
     sorted_vacancies = sort_vacancies(filtered_vacancies)
     top_vacancies = get_top_vacancies(sorted_vacancies, top_n)
+    print("ТОП вакансий:")
     print_vacancies(top_vacancies)
+    vacancy_to_delete = input("Введите название вакансии, которую будем удалять:")
+    JSONSaver.delete_vacancy('filtered.json', vacancy_to_delete)
+    print("Вакансия удалена")
 
 
 if __name__ == "__main__":
